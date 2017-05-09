@@ -17,3 +17,5 @@ var TileLayer = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite
     maxZoom: 20,
     ext: 'png'
 }).addTo(map);
+
+omnivore.kml('dep.kml').addTo(map);
