@@ -30,10 +30,30 @@ pattern.addShape(shape3);
 
 pattern.addTo(map);
 
+var patterns = {};
+
+function getpattern(id, a, b) {
+
+    patterns["pattern_"+ id] = new L.Pattern({width:50});
+
+    var as = Number(a);
+
+    var shape = new L.PatternRect({width:as, color:'red',stroke:false, fill: true}),
+	shape2 = new L.PatternRect({x:as, width:(50-as), color:'blue',stroke:false, fill: true});
+
+
+    patterns["pattern_" + id].addShape(shape);
+    patterns["pattern_" + id].addShape(shape2);
+
+    patterns["pattern_" + id].addTo(map);
+
+    return patterns["pattern_" + id];
+
+}
 
 function style(feature) {
     return {
-	fillPattern: pattern,
+	fillPattern: getpattern(feature.properties.CODE_DEPT,Math.random()*50,3),
 	fillOpacity: 0.8,
 	stroke: false
     };
