@@ -51,8 +51,10 @@ function style(feature) {
 	    Number(feature.properties.RES_DEP_LEPEN),
 	    25
 	),
-	fillOpacity: 0.9,
-	stroke: false
+	fillOpacity: 1,
+	stroke: false,
+	color: 'white',
+	weight: 0.5
     };
 }
 
