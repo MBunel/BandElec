@@ -46,7 +46,7 @@ function getpattern(id, a, b, w) {
 function style(feature) {
     return {
 	fillPattern: getpattern(
-	    feature.properties.CODE_DEPT,
+	    feature.properties[0],
 	    Number(feature.properties.RES_DEP_MACRON),
 	    Number(feature.properties.RES_DEP_LEPEN),
 	    25
@@ -58,9 +58,7 @@ function style(feature) {
 
 var Dept = L.geoJson(null, {style: style});
 omnivore.kml('data/dep.kml', null, Dept);
-
 Dept.addTo(map);
-
 
 var ElecMaps = {
     "Départements": Dept
