@@ -18,20 +18,8 @@ var TileLayer = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite
     ext: 'png'
 }).addTo(map);
 
-var pattern = new L.Pattern({width:50});
-
-var shape = new L.PatternRect({width:25, color:'red',stroke:false, fill: true}),
-    shape2 = new L.PatternRect({x:25, width:15, color:'blue',stroke:false, fill: true}),
-    shape3 = new L.PatternRect({x:40, width:10,  color:'green',stroke:false, fill: true});
-
-pattern.addShape(shape);
-pattern.addShape(shape2);
-pattern.addShape(shape3);
-
-pattern.addTo(map);
 
 var patterns = {};
-
 function getpattern(id, a, b) {
 
     patterns["pattern_"+ id] = new L.Pattern({width:50});
@@ -61,6 +49,6 @@ function style(feature) {
 
 var custonLayer = L.geoJson(null, {style: style});
 
-var Dept = omnivore.kml('dep.kml', null, custonLayer);
+var Dept = omnivore.kml('data/dep.kml', null, custonLayer);
 
 custonLayer.addTo(map);
