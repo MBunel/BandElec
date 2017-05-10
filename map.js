@@ -20,14 +20,18 @@ var TileLayer = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite
 
 
 var patterns = {};
-function getpattern(id, a, b) {
+function getpattern(id, a, b, w) {
 
-    patterns["pattern_"+ id] = new L.Pattern({width:50});
+    var vtot = a + b,
+	la = (a * w) / vtot,
+	lb = (b * w) /vtot;
+
+    patterns["pattern_"+ id] = new L.Pattern({width:w});
 
     var as = Number(a);
 
-    var shape = new L.PatternRect({width:as, color:'red',stroke:false, fill: true}),
-	shape2 = new L.PatternRect({x:as, width:(50-as), color:'blue',stroke:false, fill: true});
+    var shape = new L.PatternRect({width:la, color:'orange',stroke:false, fill: true}),
+	shape2 = new L.PatternRect({x:la, width:lb, color:'blue',stroke:false, fill: true});
 
 
     patterns["pattern_" + id].addShape(shape);
@@ -41,14 +45,26 @@ function getpattern(id, a, b) {
 
 function style(feature) {
     return {
-	fillPattern: getpattern(feature.properties.CODE_DEPT,Math.random()*50,3),
-	fillOpacity: 0.8,
+	fillPattern: getpattern(
+	    feature.properties.CODE_DEPT,
+	    Number(feature.properties.RES_DEP_MACRON),
+	    Number(feature.properties.RES_DEP_LEPEN),
+	    25
+	),
+	fillOpacity: 0.9,
 	stroke: false
     };
 }
 
-var custonLayer = L.geoJson(null, {style: style});
+var Dept = L.geoJson(null, {style: style});
+omnivore.kml('data/dep.kml', null, Dept);
 
-var Dept = omnivore.kml('data/dep.kml', null, custonLayer);
+Dept.addTo(map);
 
-custonLayer.addTo(map);
+
+var ElecMaps = {
+    "Départements": Dept
+};
+
+
+L.control.layers(ElecMaps).addTo(map);
