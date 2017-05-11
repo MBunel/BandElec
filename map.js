@@ -30,9 +30,23 @@ function getpattern(id, a, b, w) {
 
     var as = Number(a);
 
-    var shape = new L.PatternRect({width:la, color:'orange',stroke:false, fill: true}),
-	shape2 = new L.PatternRect({x:la, width:lb, color:'blue',stroke:false, fill: true});
-
+    var shape = new L.PatternRect(
+	{
+	    width:la,
+	    color:'orange',
+	    stroke:false,
+	    fill: true
+	}
+    ),
+	shape2 = new L.PatternRect(
+	    {
+		x:la,
+		width:lb,
+		color:'blue',
+		stroke:false,
+		fill: true
+	    }
+	);
 
     patterns["pattern_" + id].addShape(shape);
     patterns["pattern_" + id].addShape(shape2);
@@ -53,7 +67,7 @@ function style(feature) {
 	),
 	fillOpacity: 1,
 	stroke: false,
-	color: 'white',
+	//color: 'white',
 	weight: 0.5
     };
 }
