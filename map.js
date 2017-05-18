@@ -1,8 +1,8 @@
 "use strict";
 
 const defaultVue = {
-    coords: [43.7, 7.25],
-    zoom: 11
+    coords: [46.37, 2.48],
+    zoom: 6
 };
 
 // Map creation
